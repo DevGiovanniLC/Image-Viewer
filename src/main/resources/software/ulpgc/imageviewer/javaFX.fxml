@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.layout.StackPane?>
+<VBox fx:id="vBox" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="software.ulpgc.imageviewer.javaFX.Controller">
+
+    <ImageView fx:id="imageView"/>
+
+</VBox>
