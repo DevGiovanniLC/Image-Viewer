@@ -1,4 +1,4 @@
-package software.ulpgc.imageviewer.javaFX;
+package software.ulpgc.imageviewer;
 
 import software.ulpgc.imageviewer.interfaces.ImageInterface;
 import software.ulpgc.imageviewer.interfaces.ImageLoader;
@@ -14,8 +14,9 @@ public class JavaFXImageLoader implements ImageLoader {
 
     public JavaFXImageLoader(String path) {
 
-        this.path=path;
-        File dir = new File(this.path);
+
+        File dir = new File(path);
+        this.path = dir.getName();
         this.fileList = folderToList(dir.listFiles());
     }
 
@@ -48,7 +49,7 @@ public class JavaFXImageLoader implements ImageLoader {
             }
             @Override
             public String getPath(){
-                return  path+"/"+name();
+                return  "/"+path+"/"+name();
             }
         };
     }
