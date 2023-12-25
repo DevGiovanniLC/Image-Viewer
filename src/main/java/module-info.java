@@ -8,4 +8,6 @@ module software.ulpgc.imageviewer {
 
     opens software.ulpgc.imageviewer to javafx.fxml;
     exports software.ulpgc.imageviewer;
+    exports software.ulpgc.imageviewer.interfaces;
+    opens software.ulpgc.imageviewer.interfaces to javafx.fxml;
 }
