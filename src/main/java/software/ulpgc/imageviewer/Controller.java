@@ -8,15 +8,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import software.ulpgc.imageviewer.interfaces.ImageInterface;
 import software.ulpgc.imageviewer.interfaces.ImageLoader;
 
+import java.io.File;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    public Button chooseButton;
     @FXML
     private Button leftButton;
     @FXML
@@ -28,24 +30,18 @@ public class Controller implements Initializable {
     @FXML
     Stage stage;
 
-    private final ImageLoader imageLoader;
     private ImageInterface actualImage;
 
     private double offsetX;
     private double initialPosImage;
-
-
-    public Controller() {
-        imageLoader = new JavaFXImageLoader("src/main/resources/images");
-    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        actualImage = imageLoader.load();
-        initializeImage();
+        initializeImageDisplay();
     }
 
-    private void initializeImage(){
+    private void initializeImageDisplay(){
 
         ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
 
@@ -55,13 +51,11 @@ public class Controller implements Initializable {
             imageView.setFitWidth(width);
             imageView.setFitHeight(height);
 
-            PrintImage(actualImage);
         };
 
         imageDisplay.widthProperty().addListener(listener);
         imageDisplay.heightProperty().addListener(listener);
-
-        PrintImage(actualImage);
+        
     }
 
     @FXML
@@ -96,26 +90,29 @@ public class Controller implements Initializable {
         }
     }
 
-    private void PrintImage(ImageInterface imageInterface){
-        String path = imageInterface.getPath();
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
+    private void printImage(ImageInterface imageInterface){
+        String path = imageInterface.getAbsolutePath();
+        Image image = new Image(path);
         imageView.setImage(image);
     }
 
     private void reprintImage(ImageInterface imageInterface){
-        PrintImage(imageInterface);
+
+        printImage(imageInterface);
         stage.setTitle(actualImage.name());
         imageView.setTranslateX(0);
     }
 
     @FXML
     private void setLeftImage() {
+            if (actualImage == null) return;
             this.actualImage = actualImage.prev();
             reprintImage(actualImage);
     }
 
     @FXML
     private void setRightImage() {
+            if (actualImage == null) return;
             this.actualImage = actualImage.next();
             reprintImage(actualImage);
     }
@@ -123,6 +120,21 @@ public class Controller implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage=stage;
+    }
+
+    @FXML
+    private void chooseDirectory(){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+
+        directoryChooser.setTitle("Select directory");
+
+        File selectedDir = directoryChooser.showDialog(stage);
+
+        if (selectedDir == null) return;
+
+        ImageLoader imageLoader = new JavaFXImageLoader(selectedDir.getAbsolutePath());
+        actualImage = imageLoader.load();
         stage.setTitle(actualImage.name());
+        printImage(actualImage);
     }
 }

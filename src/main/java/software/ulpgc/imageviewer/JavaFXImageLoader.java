@@ -6,24 +6,66 @@ import software.ulpgc.imageviewer.interfaces.ImageLoader;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class JavaFXImageLoader implements ImageLoader {
 
-    private final String path;
+    private final String dirPath;
     private final List<String> fileList;
+    private final Set<String> extensions;
+
 
     public JavaFXImageLoader(String path) {
 
-
         File dir = new File(path);
-        this.path = dir.getName();
+        this.dirPath = dir.getPath();
+
+        extensions =  Set.of(
+                "bmp",
+                "gif",
+                "png",
+                "jpg",
+                "jpeg",
+                "wbmp",
+                "svg",
+                "tiff"
+        );
+
         this.fileList = folderToList(dir.listFiles());
+
     }
 
 
     @Override
     public ImageInterface load() {
-        return imageAt(0);
+        if(fileList.isEmpty())
+            return new ImageInterface() {
+            @Override
+            public String name() {
+                return null;
+            }
+
+            @Override
+            public ImageInterface prev() {
+                return load();
+            }
+
+            @Override
+            public ImageInterface next() {
+                return load();
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return obj instanceof ImageInterface && ((ImageInterface) obj).name().equals(this.name());
+            }
+
+            @Override
+            public String getAbsolutePath() {
+                return "/" + "default.png";
+            }
+        };
+        else return imageAt(0);
     }
 
     private ImageInterface imageAt(int i) {
@@ -47,9 +89,13 @@ public class JavaFXImageLoader implements ImageLoader {
             public boolean equals(Object obj) {
                 return obj instanceof ImageInterface && ((ImageInterface) obj).name().equals(this.name());
             }
+
             @Override
-            public String getPath(){
-                return  "/"+path+"/"+name();
+            public String getAbsolutePath(){
+                return  "file:"+
+                        dirPath
+                                .replace("\\","/")
+                        + "/" + name();
             }
         };
     }
@@ -59,7 +105,13 @@ public class JavaFXImageLoader implements ImageLoader {
         return  Arrays
                 .stream(files)
                 .map(File::getName)
+                .filter(file -> this.extensions.contains(getExtension(file).toLowerCase()))
                 .toList();
+    }
+
+    private String getExtension(String file){
+        int lastDotIndex = file.lastIndexOf(".");
+        return file.substring(lastDotIndex + 1);
     }
 
 }

@@ -29,6 +29,8 @@
 
         <Button fx:id="leftButton" style="-fx-font-size: 16;" onAction="#setLeftImage">⏪</Button>
 
+        <Button fx:id="chooseButton" style="-fx-font-size: 16;" onAction="#chooseDirectory">📁</Button>
+
         <Button fx:id="rightButton" style="-fx-font-size: 16;" onAction="#setRightImage">⏩</Button>
     </HBox>
 

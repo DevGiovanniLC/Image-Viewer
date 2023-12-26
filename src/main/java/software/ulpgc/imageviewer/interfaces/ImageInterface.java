@@ -6,5 +6,5 @@ public interface ImageInterface {
     ImageInterface prev();
     ImageInterface next();
 
-    String getPath();
+    String getAbsolutePath();
 }
