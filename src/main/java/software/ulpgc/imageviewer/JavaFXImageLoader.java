@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+
+
 public class JavaFXImageLoader implements ImageLoader {
 
     private final String dirPath;
@@ -18,6 +20,7 @@ public class JavaFXImageLoader implements ImageLoader {
     public JavaFXImageLoader(String path) {
 
         File dir = new File(path);
+
         this.dirPath = dir.getPath();
 
         extensions =  Set.of(
@@ -31,7 +34,7 @@ public class JavaFXImageLoader implements ImageLoader {
                 "tiff"
         );
 
-        this.fileList = folderToList(dir.listFiles());
+        this.fileList = folderToFileList(dir.listFiles());
 
     }
 
@@ -39,7 +42,13 @@ public class JavaFXImageLoader implements ImageLoader {
     @Override
     public ImageInterface load() {
         if(fileList.isEmpty())
-            return new ImageInterface() {
+            return defaultImage();
+        else
+            return imageAt(0);
+    }
+
+    private ImageInterface defaultImage(){
+        return new ImageInterface() {
             @Override
             public String name() {
                 return null;
@@ -65,7 +74,6 @@ public class JavaFXImageLoader implements ImageLoader {
                 return "/" + "default.png";
             }
         };
-        else return imageAt(0);
     }
 
     private ImageInterface imageAt(int i) {
@@ -101,7 +109,7 @@ public class JavaFXImageLoader implements ImageLoader {
     }
 
 
-    private List<String> folderToList(File[] files) {
+    private List<String> folderToFileList(File[] files) {
         return  Arrays
                 .stream(files)
                 .map(File::getName)
@@ -113,5 +121,7 @@ public class JavaFXImageLoader implements ImageLoader {
         int lastDotIndex = file.lastIndexOf(".");
         return file.substring(lastDotIndex + 1);
     }
+
+
 
 }

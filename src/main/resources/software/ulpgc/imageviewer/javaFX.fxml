@@ -7,7 +7,7 @@
 
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="imageDisplay" alignment="BOTTOM_CENTER" spacing="5.0" VBox.vgrow="ALWAYS"
+<VBox fx:id="imageFrame" alignment="BOTTOM_CENTER" spacing="5.0" VBox.vgrow="ALWAYS"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="software.ulpgc.imageviewer.Controller"
       style="-fx-background-color: #101010;"
@@ -16,9 +16,7 @@
     <ImageView fx:id="imageView"
                VBox.vgrow="ALWAYS"
                preserveRatio="true"
-               onMousePressed="#onMousePressed"
-               onMouseDragged = "#onMouseDragged"
-               onMouseReleased = "#onMouseReleased"
+
     />
 
     
