@@ -1,4 +1,4 @@
-package software.ulpgc.imageviewer;
+package software.ulpgc.imageviewer.presenter;
 
 import javafx.beans.value.ChangeListener;
 import javafx.scene.image.Image;
@@ -6,8 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import software.ulpgc.imageviewer.interfaces.ImageInterface;
-import software.ulpgc.imageviewer.interfaces.ImageDisplay;
+import software.ulpgc.imageviewer.model.ImageInterface;
 
 public class JavaFXImageDisplay implements ImageDisplay {
 

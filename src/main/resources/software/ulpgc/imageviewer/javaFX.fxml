@@ -9,7 +9,7 @@
 
 <VBox fx:id="imageFrame" alignment="BOTTOM_CENTER" spacing="5.0" VBox.vgrow="ALWAYS"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="software.ulpgc.imageviewer.Controller"
+      fx:controller="software.ulpgc.imageviewer.controller.Controller"
       style="-fx-background-color: #101010;"
 >
 

@@ -3,6 +3,7 @@ package software.ulpgc.imageviewer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import software.ulpgc.imageviewer.controller.Controller;
 
 import java.io.IOException;
 

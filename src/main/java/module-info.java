@@ -8,6 +8,12 @@ module software.ulpgc.imageviewer {
 
     opens software.ulpgc.imageviewer to javafx.fxml;
     exports software.ulpgc.imageviewer;
-    exports software.ulpgc.imageviewer.interfaces;
-    opens software.ulpgc.imageviewer.interfaces to javafx.fxml;
+    exports software.ulpgc.imageviewer.model;
+    opens software.ulpgc.imageviewer.model to javafx.fxml;
+    exports software.ulpgc.imageviewer.view;
+    opens software.ulpgc.imageviewer.view to javafx.fxml;
+    exports software.ulpgc.imageviewer.controller;
+    opens software.ulpgc.imageviewer.controller to javafx.fxml;
+    exports software.ulpgc.imageviewer.presenter;
+    opens software.ulpgc.imageviewer.presenter to javafx.fxml;
 }

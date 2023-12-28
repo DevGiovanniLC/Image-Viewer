@@ -1,7 +1,6 @@
-package software.ulpgc.imageviewer;
+package software.ulpgc.imageviewer.view;
 
-import software.ulpgc.imageviewer.interfaces.ImageInterface;
-import software.ulpgc.imageviewer.interfaces.ImageLoader;
+import software.ulpgc.imageviewer.model.ImageInterface;
 
 import java.io.File;
 import java.util.Arrays;

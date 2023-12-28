@@ -1,4 +1,4 @@
-package software.ulpgc.imageviewer;
+package software.ulpgc.imageviewer.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,8 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import software.ulpgc.imageviewer.interfaces.ImageDisplay;
-import software.ulpgc.imageviewer.interfaces.ImageLoader;
+import software.ulpgc.imageviewer.presenter.ImageDisplay;
+import software.ulpgc.imageviewer.view.ImageLoader;
+import software.ulpgc.imageviewer.presenter.JavaFXImageDisplay;
+import software.ulpgc.imageviewer.view.JavaFXImageLoader;
 
 import java.io.File;
 import java.net.URL;
