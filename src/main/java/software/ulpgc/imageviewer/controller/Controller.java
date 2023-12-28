@@ -55,16 +55,16 @@ public class Controller implements Initializable {
         if (selectedDir == null) return;
 
         ImageLoader imageLoader = new JavaFXImageLoader(selectedDir.getAbsolutePath());
-        this.imageDisplay.setActualImage(imageLoader.load());
+        this.imageDisplay.setImage(imageLoader.load());
     }
 
     @FXML
-    private void setLeftImage() {
+    private void selectLeftImage() {
         this.imageDisplay.setLeftImage();
     }
 
      @FXML
-    private void setRightImage() {
+    private void selectRightImage() {
         this.imageDisplay.setRightImage();
     }
 

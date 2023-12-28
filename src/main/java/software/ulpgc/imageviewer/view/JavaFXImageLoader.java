@@ -100,8 +100,7 @@ public class JavaFXImageLoader implements ImageLoader {
             @Override
             public String getAbsolutePath(){
                 return  "file:"+
-                        dirPath
-                                .replace("\\","/")
+                        dirPath.replace("\\","/")
                         + "/" + name();
             }
         };
@@ -109,8 +108,10 @@ public class JavaFXImageLoader implements ImageLoader {
 
 
     private List<String> folderToFileList(File[] files) {
+        
         return  Arrays
                 .stream(files)
+                .parallel()
                 .map(File::getName)
                 .filter(file -> this.extensions.contains(getExtension(file).toLowerCase()))
                 .toList();

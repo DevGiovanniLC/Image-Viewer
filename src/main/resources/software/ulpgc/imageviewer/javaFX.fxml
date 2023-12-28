@@ -25,11 +25,11 @@
             <Insets bottom="15" top="20" />
         </padding>
 
-        <Button fx:id="leftButton" style="-fx-font-size: 16;" onAction="#setLeftImage">⏪</Button>
+        <Button fx:id="leftButton" style="-fx-font-size: 16;" onAction="#selectLeftImage">⏪</Button>
 
         <Button fx:id="chooseButton" style="-fx-font-size: 16;" onAction="#chooseDirectory">📁</Button>
 
-        <Button fx:id="rightButton" style="-fx-font-size: 16;" onAction="#setRightImage">⏩</Button>
+        <Button fx:id="rightButton" style="-fx-font-size: 16;" onAction="#selectRightImage">⏩</Button>
     </HBox>
 
 

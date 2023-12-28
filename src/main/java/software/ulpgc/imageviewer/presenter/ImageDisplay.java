@@ -7,5 +7,5 @@ public interface ImageDisplay {
 
     void setRightImage();
 
-    void setActualImage(ImageInterface image);
+    void setImage(ImageInterface image);
 }

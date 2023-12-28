@@ -23,18 +23,18 @@ public class JavaFXImageDisplay implements ImageDisplay {
         this.imageFrame = imageFrame;
         this.imageView = imageView;
 
-        initializeImageFrame();
-        initializeImageView();
+        configureImageFrame();
+        configureImageView();
     }
 
 
-    private void initializeImageView() {
+    private void configureImageView() {
         this.imageView.setOnMousePressed(this::checkMousePosition);
         this.imageView.setOnMouseDragged(this::moveImage);
-        this.imageView.setOnMouseReleased(this::setImage);
+        this.imageView.setOnMouseReleased(this::selectNextImage);
     }
 
-    private void initializeImageFrame(){
+    private void configureImageFrame(){
         ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
 
             double width = imageFrame.getWidth()-100;
@@ -75,8 +75,9 @@ public class JavaFXImageDisplay implements ImageDisplay {
         imageView.setTranslateX(newTranslateX);
     }
 
-    private void setImage(MouseEvent event) {
-        double limit= imageFrame.getWidth() - imageView.getBoundsInParent().getWidth()-100;
+    private void selectNextImage(MouseEvent event) {
+        
+        double limit= imageFrame.getWidth() - imageView.getBoundsInParent().getWidth();
 
         if (imageView.getTranslateX() > -limit && imageView.getTranslateX() > initialPosImage) {
             setLeftImage();
@@ -89,14 +90,14 @@ public class JavaFXImageDisplay implements ImageDisplay {
     public void setLeftImage() {
         if (actualImage == null) return;
         this.actualImage = actualImage.prev();
-        setActualImage(actualImage);
+        setImage(actualImage);
     }
 
     @Override
     public void setRightImage() {
         if (actualImage == null) return;
         this.actualImage = actualImage.next();
-        setActualImage(actualImage);
+        setImage(actualImage);
     }
 
     private void printImage(ImageInterface imageInterface){
@@ -106,7 +107,7 @@ public class JavaFXImageDisplay implements ImageDisplay {
     }
 
    @Override
-    public void setActualImage(ImageInterface image){
+    public void setImage(ImageInterface image){
         this.actualImage = image;
         printImage(image);
         stage.setTitle(actualImage.name());
