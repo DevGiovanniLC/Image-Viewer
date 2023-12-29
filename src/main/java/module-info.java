@@ -5,6 +5,7 @@ module software.ulpgc.imageviewer {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
 
     opens software.ulpgc.imageviewer to javafx.fxml;
     exports software.ulpgc.imageviewer;

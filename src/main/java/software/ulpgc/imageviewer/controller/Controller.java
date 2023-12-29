@@ -41,7 +41,7 @@ public class Controller implements Initializable {
     public void setStage(Stage stage) {
         this.stage=stage;
         JavaFXImageDisplay imageDisplay = (JavaFXImageDisplay) this.imageDisplay;
-        imageDisplay.setStage(this.stage);
+        imageDisplay.setParentStage(this.stage);
     }
 
     @FXML
