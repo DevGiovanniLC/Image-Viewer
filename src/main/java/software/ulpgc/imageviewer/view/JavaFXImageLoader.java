@@ -37,16 +37,31 @@ public class JavaFXImageLoader implements ImageLoader {
 
     }
 
+    private List<String> folderToFileList(File[] files) {
+
+        return Arrays
+                .stream(files)
+                .parallel()
+                .map(File::getName)
+                .filter(file -> this.extensions.contains(getExtension(file).toLowerCase()))
+                .toList();
+    }
+
+    private String getExtension(String file){
+        int lastDotIndex = file.lastIndexOf(".");
+        return file.substring(lastDotIndex + 1);
+    }
+
 
     @Override
     public ImageInterface load() {
         if(fileList.isEmpty())
-            return defaultImage();
+            return getdefaultImage();
         else
             return imageAt(0);
     }
 
-    private ImageInterface defaultImage(){
+    private ImageInterface getdefaultImage(){
         return new ImageInterface() {
             @Override
             public String name() {
@@ -107,20 +122,6 @@ public class JavaFXImageLoader implements ImageLoader {
     }
 
 
-    private List<String> folderToFileList(File[] files) {
-        
-        return  Arrays
-                .stream(files)
-                .parallel()
-                .map(File::getName)
-                .filter(file -> this.extensions.contains(getExtension(file).toLowerCase()))
-                .toList();
-    }
-
-    private String getExtension(String file){
-        int lastDotIndex = file.lastIndexOf(".");
-        return file.substring(lastDotIndex + 1);
-    }
 
 
 

@@ -9,23 +9,33 @@ import javafx.stage.Popup;
 
 public class JavaFXContextPopUp extends Popup {
     public JavaFXContextPopUp(String text) {
-        this.getContent().add(backgroundPopUp(text));
+        this.getContent().add(getBackground(text));
     }
 
-    private StackPane backgroundPopUp(String text){
-        StackPane menuBackground = new StackPane();
-        menuBackground.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 10px;");
+    private StackPane getBackground(String text){
+        StackPane background = new StackPane();
+        background.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 15px;");
+
+        setImageInfo(text, background);
+
+        background.setEffect(getShadowEffect());
+
+        return background;
+    }
+
+    private void setImageInfo(String text, StackPane background){
         Text label = new Text(text);
         label.setFont(new Font("Arial", 20));
-        menuBackground.getChildren().add(label);
+        background.getChildren().add(label);
+    }
 
+    private DropShadow getShadowEffect(){
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5);
         dropShadow.setOffsetX(3);
         dropShadow.setOffsetY(3);
         dropShadow.setColor(Color.rgb(0, 0, 0, 0.3));
 
-        menuBackground.setEffect(dropShadow);
-        return menuBackground;
+        return dropShadow;
     }
 }

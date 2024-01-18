@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JavaFXInfoImage{
+public class JavaFXImageInfo {
 
-    private JavaFXInfoImage() {
+    private JavaFXImageInfo() {
 
     }
 
@@ -24,7 +24,7 @@ public class JavaFXInfoImage{
         );
     }
 
-    public static long imageSizeKB(String absolutePath) {
+    private static long imageSizeKB(String absolutePath) {
         Path path = Paths.get(absolutePath.substring(5));
         try {
             return Files.size(path) / 1024;

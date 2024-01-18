@@ -11,7 +11,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import software.ulpgc.imageviewer.model.ImageInterface;
 import software.ulpgc.imageviewer.view.JavaFXContextPopUp;
-import software.ulpgc.imageviewer.view.JavaFXInfoImage;
+import software.ulpgc.imageviewer.view.JavaFXImageInfo;
 
 
 public class JavaFXImageDisplay implements ImageDisplay {
@@ -33,8 +33,23 @@ public class JavaFXImageDisplay implements ImageDisplay {
         this.imageFrame = imageFrame;
         this.imageView = imageView;
 
-        configureImageView();
         configureImageFrame();
+        configureImageView();
+    }
+
+    private void configureImageFrame(){
+        ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
+
+            double width = imageFrame.getWidth()-100;
+            double height = imageFrame.getHeight()-100;
+
+            imageView.setFitWidth(width);
+            imageView.setFitHeight(height);
+
+        };
+
+        imageFrame.widthProperty().addListener(listener);
+        imageFrame.heightProperty().addListener(listener);
     }
 
 
@@ -83,24 +98,6 @@ public class JavaFXImageDisplay implements ImageDisplay {
             setRightImage();
         }
     }
-
-
-    private void configureImageFrame(){
-        ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
-
-            double width = imageFrame.getWidth()-100;
-            double height = imageFrame.getHeight()-100;
-
-            imageView.setFitWidth(width);
-            imageView.setFitHeight(height);
-
-        };
-
-        imageFrame.widthProperty().addListener(listener);
-        imageFrame.heightProperty().addListener(listener);
-    }
-
-
 
     public void setParentStage(Stage stage){
         this.stage = stage;
@@ -168,7 +165,7 @@ public class JavaFXImageDisplay implements ImageDisplay {
         String path = imageInterface.getAbsolutePath();
         Image image = new Image(path);
         imageView.setImage(image);
-        infoActualImage = JavaFXInfoImage.getInfo(image, imageInterface.getAbsolutePath());
+        infoActualImage = JavaFXImageInfo.getInfo(image, imageInterface.getAbsolutePath());
     }
 
 }
