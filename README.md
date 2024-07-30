@@ -1,6 +1,10 @@
+<div align="center">
+ <img src="https://github.com/user-attachments/assets/047c6d44-d0ba-4ddf-8960-0d51b59865c9" width="250" height="250"/>
+ <img src="https://github.com/user-attachments/assets/3bfbb2aa-1481-497f-a548-d9e4fca1b304" width="250" height="250"/>
+</div>
+ 
  # Image Viewer (Graphical Interface)
-
-<br><br>
+<br>
 ### Software Usage
 ***
 
